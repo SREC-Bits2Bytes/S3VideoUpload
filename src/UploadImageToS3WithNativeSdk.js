@@ -42,9 +42,24 @@ const UploadImageToS3WithNativeSdk = () => {
 
   return (
     <div>
-      <div>Native SDK File Upload Progress is {progress}%</div>
-      <input type="file" onChange={handleFileInput} />
-      <button onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
+      {/* <div>Native SDK File Upload Progress is {progress}%</div> */}
+      <center>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <input type="file" onChange={handleFileInput} /> <br></br>
+        <button onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
+      </center>
     </div>
   );
 };
