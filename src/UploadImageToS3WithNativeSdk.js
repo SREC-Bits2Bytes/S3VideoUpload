@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AWS from "aws-sdk";
+import styled from "styled-components";
+import img from "./upload.png";
 
 const S3_BUCKET = "sih-student";
 const REGION = "ap-south-1";
@@ -39,26 +41,37 @@ const UploadImageToS3WithNativeSdk = () => {
         if (err) console.log(err);
       });
   };
-
+  const Button = styled.button`
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    padding: 10px 60px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    cursor: pointer;
+  `;
+  // const uploadFiles = () => {
+  //   document.getElementById("selectFile").click();
+  // };
   return (
     <div>
       {/* <div>Native SDK File Upload Progress is {progress}%</div> */}
       <center>
+        {/* <button
+          style={{ backgroundColor: "white" }}
+          onClick={uploadFiles.bind()}
+        >
+          <img src={img} height="70" width={70} alt="upload"></img>
+        </button>      upload file image to upload */}
+        <input
+          // id="selectFile"
+          type="file"
+          onChange={handleFileInput}
+          style={{ paddingLeft: "3cm", paddingBottom: "1cm" }}
+        />{" "}
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <input type="file" onChange={handleFileInput} /> <br></br>
-        <button onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
+        {/* <video src={selectedFile}></video> */}
+        <Button onClick={() => uploadFile(selectedFile)}> Upload </Button>
       </center>
     </div>
   );
