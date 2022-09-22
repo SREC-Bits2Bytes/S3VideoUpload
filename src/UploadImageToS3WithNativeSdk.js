@@ -4,7 +4,7 @@ import styled from "styled-components";
 import img from "./upload.png";
 import "./App.css";
 
-const S3_BUCKET = "sih-student";
+const S3_BUCKET = "sih-student/photo";
 const REGION = "ap-south-1";
 
 AWS.config.update({
@@ -104,8 +104,16 @@ const UploadImageToS3WithNativeSdk = () => {
         <br />
 
         {/* <video src={selectedFile}></video> */}
-        <Button onClick={() => { uploadFile(selectedFile); {alert("Successfully Uploaded")}}}>
-       Upload </Button>
+        <Button
+          onClick={() => {
+            uploadFile(selectedFile);
+            {
+              alert("Successfully Uploaded");
+            }
+          }}
+        >
+          Upload{" "}
+        </Button>
       </center>
     </div>
   );
