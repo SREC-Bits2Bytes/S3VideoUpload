@@ -45,7 +45,7 @@ const UploadImageToS3WithNativeSdk = () => {
       Key: tname + "." + ext,
     };
     // co;
-    myBucket
+    const res = myBucket
       .putObject(params)
       .on("httpUploadProgress", (evt) => {
         setProgress(Math.round((evt.loaded / evt.total) * 100));
@@ -53,6 +53,13 @@ const UploadImageToS3WithNativeSdk = () => {
       .send((err) => {
         if (err) console.log(err);
       });
+    if (res) {
+      alert("Uploaded Successfully");
+      setTeamName("");
+    } else {
+      alert("Something went Wrong");
+    }
+    console.log("res:", res);
   };
   const Button = styled.button`
     background-color: black;
@@ -127,9 +134,6 @@ const UploadImageToS3WithNativeSdk = () => {
         <Button
           onClick={() => {
             uploadFile(selectedFile);
-            {
-              alert("Successfully Uploaded");
-            }
           }}
         >
           Upload{" "}
