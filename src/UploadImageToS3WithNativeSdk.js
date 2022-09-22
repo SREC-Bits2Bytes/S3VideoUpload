@@ -104,7 +104,8 @@ const UploadImageToS3WithNativeSdk = () => {
         <br />
 
         {/* <video src={selectedFile}></video> */}
-        <Button onClick={() => uploadFile(selectedFile)}> Upload </Button>
+        <Button onClick={() => { uploadFile(selectedFile); {alert("Successfully Uploaded")}}}>
+       Upload </Button>
       </center>
     </div>
   );
