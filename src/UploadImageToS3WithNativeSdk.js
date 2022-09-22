@@ -96,7 +96,27 @@ const UploadImageToS3WithNativeSdk = () => {
           />
           <span className="file-custom"></span>{" "}
         </label> */}
-
+        <center>
+          <br></br>
+          <p style={{ color: "blue", fontWeight: "bold", fontSize: "0.5cm" }}>
+            Name should your Gmail id without domain name{" "}
+          </p>
+          <p style={{ color: "blue", fontWeight: "bold", fontSize: "0.4cm" }}>
+            If mail Id is{" "}
+            <label
+              style={{ color: "red", fontWeight: "bold", fontSize: "0.45cm" }}
+            >
+              "abcd@gmail.com"{" "}
+            </label>
+            then name should be filled as{" "}
+            <label
+              style={{ color: "red", fontWeight: "bold", fontSize: "0.47cm" }}
+            >
+              "abcd"
+            </label>
+          </p>
+          <br></br>
+        </center>
         <label className="custom-file-upload">
           <input type="file" id="file" onChange={handleFileInput} />
           {""}
