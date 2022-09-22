@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AWS from "aws-sdk";
 import styled from "styled-components";
 import img from "./upload.png";
+import "./App.css";
 
 const S3_BUCKET = "sih-student";
 const REGION = "ap-south-1";
@@ -19,9 +20,21 @@ const myBucket = new AWS.S3({
 const UploadImageToS3WithNativeSdk = () => {
   const [progress, setProgress] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [tname, setTeamName] = useState("");
+  const [ext, setExt] = useState("");
+
+  const handleChange = (event) => {
+    setTeamName(event.target.value);
+    console.log(event);
+    // setExt(event)
+  };
 
   const handleFileInput = (e) => {
     setSelectedFile(e.target.files[0]);
+    const extension = e.target.value.split(".");
+    setExt(extension[extension.length - 1]);
+
+    console.log("e:", e.target.value);
   };
 
   const uploadFile = (file) => {
@@ -29,9 +42,9 @@ const UploadImageToS3WithNativeSdk = () => {
       ACL: "public-read",
       Body: file,
       Bucket: S3_BUCKET,
-      Key: file.name,
+      Key: tname + "." + ext,
     };
-
+    // co;
     myBucket
       .putObject(params)
       .on("httpUploadProgress", (evt) => {
@@ -54,7 +67,7 @@ const UploadImageToS3WithNativeSdk = () => {
   //   document.getElementById("selectFile").click();
   // };
   return (
-    <div>
+    <div className="card">
       {/* <div>Native SDK File Upload Progress is {progress}%</div> */}
       <center>
         {/* <button
@@ -64,12 +77,32 @@ const UploadImageToS3WithNativeSdk = () => {
           <img src={img} height="70" width={70} alt="upload"></img>
         </button>      upload file image to upload */}
         <input
-          // id="selectFile"
-          type="file"
-          onChange={handleFileInput}
-          style={{ paddingLeft: "3cm", paddingBottom: "1cm" }}
-        />{" "}
-        <br></br>
+          type="text"
+          placeholder="Name"
+          name="tname"
+          id="tname"
+          onChange={handleChange}
+          value={tname}
+        ></input>
+        <br />
+        {/* <label className="file">
+          <input
+            // id="selectFile"
+            type="file"
+            id="file"
+            aria-label="File browser example"
+            onChange={handleFileInput}
+            style={{ paddingLeft: "3cm", paddingBottom: "1cm" }}
+          />
+          <span className="file-custom"></span>{" "}
+        </label> */}
+
+        <label className="custom-file-upload">
+          <input type="file" id="file" onChange={handleFileInput} />
+          {""}
+        </label>
+        <br />
+
         {/* <video src={selectedFile}></video> */}
         <Button onClick={() => uploadFile(selectedFile)}> Upload </Button>
       </center>
@@ -119,4 +152,4 @@ export default UploadImageToS3WithNativeSdk;
 //   );
 // };
 
-// export default UploadImageToS3WithReactS3;
+// export default UploadImageToS3WithReactS3
